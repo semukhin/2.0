@@ -1,13 +1,11 @@
 # src/graph/agent_state.py
 
-from typing import List, Dict, Any, Annotated, TypedDict, Literal
-from langchain_core.messages import BaseMessage
+from typing import List, Dict, Any, Annotated
+from typing_extensions import TypedDict
+from langchain_core.documents import Document
 from langgraph.graph.message import add_messages
 
-# Определяем возможные шаги плана для строгой типизации
-AgentPlan = Literal
-
-class AgentState(TypedDict):
+class AgentState(TypedDict, total=False):
     """
     Определяет состояние графа. Этот объект передается между узлами.
     """
@@ -16,12 +14,12 @@ class AgentState(TypedDict):
     user_id: int
     
     # План от координатора
-    plan: List[AgentPlan]
+    plan: List[str]
     
     # Промежуточные результаты
     search_query: str
-    retrieved_documents: str
-    analyzed_facts: List]
+    retrieved_documents: List[Document]
+    analyzed_facts: Dict[str, Any]
     synthesized_argument: str
     draft_document: str
     
@@ -34,3 +32,4 @@ class AgentState(TypedDict):
     # Для цикла самокоррекции
     retrieval_attempts: int
     retrieval_relevance: str # 'Relevant' или 'Irrelevant'
+    # ... другие промежуточные состояния по мере необходимости
