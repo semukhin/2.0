@@ -1,0 +1,39 @@
+# requirements.txt
+
+# Core FastAPI
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+python-dotenv
+
+# Database & Migrations
+sqlalchemy[asyncio]
+asyncpg
+alembic
+pgvector
+sqlalchemy-pgvector
+
+# Authentication
+passlib[bcrypt]
+python-jose[cryptography]
+
+# Background Tasks
+celery[redis]
+flower
+
+# AI and LangChain Ecosystem
+langchain
+langchain-openai
+langchain-community
+langgraph
+langchain-core
+# Checkpointers for LangGraph
+langgraph-checkpoint-redis
+
+# External Tools
+tavily-python
+
+# Document Parsing
+python-docx
+PyMuPDF
